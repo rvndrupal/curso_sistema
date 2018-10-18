@@ -2,10 +2,10 @@
 @section('contenido')
 
 <template v-if="menu==0">
-<example-component></example-component>
+<h1>Del meno cero donde van datos</h1>
 </template>
 <template v-if="menu==1">
-<h1>ESTO ES EL CONTENIDO NUMERO uno</h1>
+<categoria></categoria>
 </template>
 <template v-if="menu==2">
 <h1>ESTO ES EL CONTENIDO NUMEROdos</h1>
