@@ -1,0 +1,46 @@
+@extends('principal')
+@section('contenido')
+
+<template v-if="menu==0">
+<example-component></example-component>
+</template>
+<template v-if="menu==1">
+<h1>ESTO ES EL CONTENIDO NUMERO uno</h1>
+</template>
+<template v-if="menu==2">
+<h1>ESTO ES EL CONTENIDO NUMEROdos</h1>
+</template>
+<template v-if="menu==3">
+<h1>ESTO ES EL CONTENIDO NUMERO tres</h1>
+</template>
+<template v-if="menu==4">
+<h1>ESTO ES EL CONTENIDO NUMERO cuatro</h1>
+</template>
+<template v-if="menu==5">
+<h1>ESTO ES EL CONTENIDO NUMERO cinco</h1>
+</template>
+<template v-if="menu==6">
+<h1>ESTO ES EL CONTENIDO NUMERO SEIS</h1>
+</template>
+<template v-if="menu==7">
+<h1>ESTO ES EL CONTENIDO NUMERO SIETE</h1>
+</template>
+<template v-if="menu==8">
+<h1>ESTO ES EL CONTENIDO NUMERO OCHO</h1>
+</template>
+<template v-if="menu==9">
+<h1>ESTO ES EL CONTENIDO NUMERO NUEVE</h1>
+</template>
+<template v-if="menu==10">
+<h1>ESTO ES EL CONTENIDO NUMERO DIEZ</h1>
+</template>
+<template v-if="menu==11">
+<h1>ESTO ES EL CONTENIDO NUMERO ONCE</h1>
+</template>
+<template v-if="menu==12">
+<h1>ESTO ES EL CONTENIDO NUMERO DOCE</h1>
+</template>
+
+
+
+@endsection
