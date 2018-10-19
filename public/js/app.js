@@ -47890,6 +47890,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -47899,7 +47907,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             arrayCategoria: [],
             modal: 0,
             tituloModal: '',
-            tipoAccion: 0
+            tipoAccion: 0,
+            errorCategoria: 0,
+            errorMostrarMensaje: []
         };
     },
 
@@ -47913,9 +47923,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         registrarCategoria: function registrarCategoria() {
-            /* if (this.validarCategoria()){
-                 return;
-             }*/
+            if (this.validarCategoria()) {
+                return;
+            }
 
             var me = this;
 
@@ -47928,6 +47938,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        validarCategoria: function validarCategoria() {
+            this.errorCategoria = 0;
+            this.errorMostrarMensaje = [];
+
+            if (!this.nombre) this.errorMostrarMensaje.push("El nombre de la categoría no puede estar vacío.");
+
+            if (this.errorMostrarMensaje.length) this.errorCategoria = 1;
+
+            return this.errorCategoria;
         },
         cerrarModal: function cerrarModal() {
             this.modal = 0;
@@ -48158,11 +48178,7 @@ var render = function() {
                               _vm.nombre = $event.target.value
                             }
                           }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "help-block" }, [
-                          _vm._v("(*) Ingrese el nombre de la categoría")
-                        ])
+                        })
                       ])
                     ]),
                     _vm._v(" "),
@@ -48199,7 +48215,34 @@ var render = function() {
                           }
                         })
                       ])
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: (_vm.errorCategoria = 1),
+                            expression: "errorCategoria=1"
+                          }
+                        ],
+                        staticClass: "form-group row div-error "
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "text-center text-error" },
+                          _vm._l(_vm.errorMostrarMensaje, function(error) {
+                            return _c("div", {
+                              key: error,
+                              domProps: { textContent: _vm._s(error) }
+                            })
+                          })
+                        )
+                      ]
+                    )
                   ]
                 )
               ]),

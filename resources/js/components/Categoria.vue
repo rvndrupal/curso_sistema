@@ -105,13 +105,21 @@
                             <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                             <div class="col-md-9">
                                 <input type="text" v-model="nombre" class="form-control" placeholder="Nombre de categoría">
-                                <span class="help-block">(*) Ingrese el nombre de la categoría</span>
+
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="email-input">Descripción</label>
                             <div class="col-md-9">
                                 <input type="text" v-model="descripcion" class="form-control" placeholder="Descripción">
+                            </div>
+                        </div>
+                        <div v-show="errorCategoria=1" class="form-group row div-error ">
+                            <div class="text-center text-error">
+                                <div v-for="error in errorMostrarMensaje" :key="error" v-text="error">
+
+                                </div>
+
                             </div>
                         </div>
                     </form>
@@ -168,6 +176,8 @@
                 modal: 0,
                 tituloModal:'',
                 tipoAccion: 0,
+                errorCategoria: 0,
+                errorMostrarMensaje:[],
             }
         },
         methods:{
@@ -182,9 +192,9 @@
                     });
             },
            registrarCategoria(){
-               /* if (this.validarCategoria()){
+                if (this.validarCategoria()){
                     return;
-                }*/
+                }
 
                 let me = this;
 
@@ -199,6 +209,18 @@
                     console.log(error);
                 });
         },
+
+            validarCategoria(){
+                this.errorCategoria=0;
+                this.errorMostrarMensaje =[];
+
+                if (!this.nombre) this.errorMostrarMensaje.push("El nombre de la categoría no puede estar vacío.");
+
+                if (this.errorMostrarMensaje.length) this.errorCategoria = 1;
+
+                return this.errorCategoria;
+            },
+
 
             cerrarModal(){
                 this.modal=0;
