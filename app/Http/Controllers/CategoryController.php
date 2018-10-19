@@ -12,11 +12,33 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categorias=Category::all();
+        if (!$request->ajax()) return redirect('/');
+        $buscar = $request->buscar;
+        $criterio = $request->criterio;
 
-        return $categorias;
+        if ($buscar==''){
+            $categorias = Category::orderBy('id', 'desc')->paginate(4);
+        }
+        else{
+            $categorias = Category::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(4);
+        }
+
+
+        return [
+            'pagination' => [
+                'total'        => $categorias->total(),
+                'current_page' => $categorias->currentPage(),
+                'per_page'     => $categorias->perPage(),
+                'last_page'    => $categorias->lastPage(),
+                'from'         => $categorias->firstItem(),
+                'to'           => $categorias->lastItem(),
+            ],
+            'categorias' => $categorias
+        ];
+
+
     }
 
 
@@ -28,7 +50,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-       // if (!$request->ajax()) return redirect('/');
+       if (!$request->ajax()) return redirect('/');
         $categoria = new Category();
         $categoria->nombre = $request->nombre;
         $categoria->descripcion = $request->descripcion;

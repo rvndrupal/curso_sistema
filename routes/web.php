@@ -18,5 +18,5 @@ Route::get('/', function () {
 Route::get('/categoria', 'CategoryController@index');
 Route::post('/categoria/store', 'CategoryController@store');
 Route::put('/categoria/update', 'CategoryController@update');
-Route::put('/categoria/desactivar', 'CategoriaController@desactivar');
-Route::put('/categoria/activar', 'CategoriaController@activar');
+Route::put('/categoria/desactivar', 'CategoryController@desactivar');
+Route::put('/categoria/activar', 'CategoryController@activar');
