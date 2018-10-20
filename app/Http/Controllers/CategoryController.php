@@ -42,6 +42,14 @@ class CategoryController extends Controller
     }
 
 
+    public function selectCategoria(Request $request){
+        if (!$request->ajax()) return redirect('/');
+        $categorias = Category::where('condicion','=','1')
+        ->select('id','nombre')->orderBy('nombre', 'asc')->get();
+        return ['categorias' => $categorias];
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *

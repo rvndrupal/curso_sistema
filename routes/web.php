@@ -20,3 +20,11 @@ Route::post('/categoria/store', 'CategoryController@store');
 Route::put('/categoria/update', 'CategoryController@update');
 Route::put('/categoria/desactivar', 'CategoryController@desactivar');
 Route::put('/categoria/activar', 'CategoryController@activar');
+Route::get('/categoria/selectCategoria', 'CategoryController@selectCategoria');
+
+
+Route::get('/articulo', 'ArticulosController@index');
+Route::post('/articulo/store', 'ArticulosController@store');
+Route::put('/articulo/update', 'ArticulosController@update');
+Route::put('/articulo/desactivar', 'ArticulosController@desactivar');
+Route::put('/articulo/activar', 'ArticulosController@activar');
