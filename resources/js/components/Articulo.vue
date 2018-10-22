@@ -182,6 +182,7 @@
 </template>
 
 <script>
+     import VueBarcode from 'vue-barcode';
     export default {
 
         data(){
@@ -215,6 +216,9 @@
 
             }
         },
+         components: {
+        'barcode': VueBarcode
+         },
          computed:{
             isActived: function(){
                 return this.pagination.current_page;
@@ -262,9 +266,9 @@
 
              selectCategoria(){
                 let me=this;
-                var url= this.ruta + '/categoria/selectCategoria';
+                var url='/categoria/selectCategoria';
                 axios.get(url).then(function (response) {
-                    //console.log(response);
+                   // console.log(response);
                     var respuesta= response.data;
                     me.arrayCategoria = respuesta.categorias;
                 })
@@ -289,7 +293,7 @@
                 let me = this;
 
                 axios.post('/articulo/store',{
-                    'idcategoria': this.idcategoria,
+                    'category_id': this.idcategoria,
                     'codigo': this.codigo,
                     'nombre': this.nombre,
                     'stock': this.stock,
@@ -313,7 +317,11 @@
                 let me = this;
 
                 axios.put('/articulo/update',{
+                    'category_id': this.idcategoria,
+                    'codigo': this.codigo,
                     'nombre': this.nombre,
+                    'stock': this.stock,
+                    'precio_venta': this.precio_venta,
                     'descripcion': this.descripcion,
                     'id': this.articulo_id
                 }).then(function (response) {
@@ -410,7 +418,10 @@
                 this.errorArticulo=0;
                 this.errorMostrarMensaje =[];
 
-                if (!this.nombre) this.errorMostrarMensaje.push("El nombre de la categoría no puede estar vacío.");
+                if (this.idcategoria==0) this.errorMostrarMensaje.push("Seleccione una categoría.");
+                if (!this.nombre) this.errorMostrarMensaje.push("El nombre del artículo no puede estar vacío.");
+                if (!this.stock) this.errorMostrarMensaje.push("El stock del artículo debe ser un número y no puede estar vacío.");
+                if (!this.precio_venta) this.errorMostrarMensaje.push("El precio venta del artículo debe ser un número y no puede estar vacío.");
 
                 if (this.errorMostrarMensaje.length) this.errorArticulo = 1;
 
@@ -421,8 +432,14 @@
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';
-                this.nombre="";
-                this.descripcion="";
+                this.idcategoria= 0;
+                //this.nombre_categoria = '';
+                this.codigo = '';
+                this.nombre = '';
+                this.precio_venta = 0;
+                this.stock = 0;
+                this.descripcion = '';
+		        this.errorArticulo=0;
             },
             abrirModal(modelo,accion,data=[]){
                 switch(modelo)
@@ -432,23 +449,31 @@
                         switch(accion){
                             case"registrar":
                             {
-                                this.modal=1;
-                                this.nombre="";
-                                this.descripcion="";
-                                this.tituloModal="Registrar Articulo";
-                                this.tipoAccion=1;
+                                this.modal = 1;
+                                this.tituloModal = 'Registrar Artículo';
+                                this.idcategoria=0;
+                                //this.nombre_categoria='';
+                                this.codigo='';
+                                this.nombre= '';
+                                this.precio_venta=0;
+                                this.stock=0;
+                                this.descripcion = '';
+                                this.tipoAccion = 1;
                                 break;
 
                             }
                             case"actualizar":
                             {
-                                 this.modal=1;
-                                this.nombre=data['nombre'];
-                                this.descripcion=data['descripcion'];
-                                this.tituloModal="Actualizar Articulo";
+                                this.modal=1;
+                                this.tituloModal='Actualizar Artículo';
                                 this.tipoAccion=2;
                                 this.articulo_id=data['id'];
-
+                                this.idcategoria=data['category_id'];
+                                this.codigo=data['codigo'];
+                                this.nombre = data['nombre'];
+                                this.stock=data['stock'];
+                                this.precio_venta=data['precio_venta'];
+                                this.descripcion= data['descripcion'];
                                 break;
 
                             }
@@ -456,6 +481,7 @@
                     }
 
                 }
+                this.selectCategoria();//para cargar los datos del select
             },
         },//methods
         mounted() {

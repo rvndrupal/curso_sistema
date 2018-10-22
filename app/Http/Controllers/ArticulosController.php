@@ -15,9 +15,11 @@ class ArticulosController extends Controller
      */
     public function index(Request $request)
     {
-        //if (!$request->ajax()) return redirect('/');
+        if (!$request->ajax()) return redirect('/');
         $buscar = $request->buscar;
         $criterio = $request->criterio;
+
+
 
        /* $articulos = Articulos::paginate(3);
 
@@ -68,15 +70,15 @@ class ArticulosController extends Controller
     public function store(Request $request)
     {
        if (!$request->ajax()) return redirect('/');
-        $articulo = new Articulos();
-        $articulo->idcategoria = $request->idcategoria;
-        $articulo->codigo = $request->codigo;
-        $articulo->nombre = $request->nombre;
-        $articulo->precio_venta = $request->precio_venta;
-        $articulo->stock = $request->stock;
-        $articulo->descripcion = $request->descripcion;
-        $articulo->condicion = '1';
-        $articulo->save();
+        $articulos = new Articulos();
+        $articulos->category_id = $request->category_id;
+        $articulos->codigo = $request->codigo;
+        $articulos->nombre = $request->nombre;
+        $articulos->precio_venta = $request->precio_venta;
+        $articulos->stock = $request->stock;
+        $articulos->descripcion = $request->descripcion;
+        $articulos->condicion = '1';
+        $articulos->save();
     }
 
 
@@ -90,15 +92,15 @@ class ArticulosController extends Controller
     public function update(Request $request, Category $category)
     {
         if (!$request->ajax()) return redirect('/');
-        $articulo = Articulos::findOrFail($request->id);
-        $articulo->idcategoria = $request->idcategoria;
-        $articulo->codigo = $request->codigo;
-        $articulo->nombre = $request->nombre;
-        $articulo->precio_venta = $request->precio_venta;
-        $articulo->stock = $request->stock;
-        $articulo->descripcion = $request->descripcion;
-        $articulo->condicion = '1';
-        $articulo->save();
+        $articulos = Articulos::findOrFail($request->id);
+        $articulos->category_id = $request->category_id;
+        $articulos->codigo = $request->codigo;
+        $articulos->nombre = $request->nombre;
+        $articulos->precio_venta = $request->precio_venta;
+        $articulos->stock = $request->stock;
+        $articulos->descripcion = $request->descripcion;
+        $articulos->condicion = '1';
+        $articulos->save();
     }
 
 
