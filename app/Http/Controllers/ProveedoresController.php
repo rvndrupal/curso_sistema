@@ -16,7 +16,7 @@ class ProveedoresController extends Controller
      */
     public function index(Request $request)
     {
-       // if (!$request->ajax()) return redirect('/');
+       if (!$request->ajax()) return redirect('/');
 
         $buscar = $request->buscar;
         $criterio = $request->criterio;
@@ -66,7 +66,7 @@ class ProveedoresController extends Controller
 
         try{
             DB::beginTransaction(); //insertar al mismo tiempo
-            $personas = new ss();
+            $personas = new Personas();
             $personas->nombre = $request->nombre;
             $personas->tipo_documento = $request->tipo_documento;
             $personas->num_documento = $request->num_documento;
@@ -99,9 +99,9 @@ class ProveedoresController extends Controller
      * @param  \App\Proveedores  $proveedores
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proveedores $proveedores)
+    public function update(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+       if (!$request->ajax()) return redirect('/');
 
         try{
             DB::beginTransaction();
@@ -109,7 +109,7 @@ class ProveedoresController extends Controller
             //Buscar primero el proveedor a modificar
             $proveedores = Proveedores::findOrFail($request->id);
 
-            $personas = Personas::findOrFail($proveedor->id);
+            $personas = Personas::findOrFail($request->id);
 
             $personas->nombre = $request->nombre;
             $personas->tipo_documento = $request->tipo_documento;

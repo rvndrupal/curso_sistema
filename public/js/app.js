@@ -55142,7 +55142,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var me = this;
 
-            axios.post(this.ruta + '/proveedor/registrar', {
+            axios.post('/proveedor/registrar', {
                 'nombre': this.nombre,
                 'tipo_documento': this.tipo_documento,
                 'num_documento': this.num_documento,
@@ -55166,7 +55166,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var me = this;
 
-            axios.put(this.ruta + '/proveedor/actualizar', {
+            axios.put('/proveedor/actualizar', {
                 'nombre': this.nombre,
                 'tipo_documento': this.tipo_documento,
                 'num_documento': this.num_documento,
@@ -55241,8 +55241,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.direccion = data['direccion'];
                                     this.telefono = data['telefono'];
                                     this.email = data['email'];
-                                    this.contacto = data['contacto'];
-                                    this.telefono_contacto = data['telefono_contacto'];
+                                    this.contacto = data.proveedor['contacto'];
+                                    this.telefono_contacto = data.proveedor['telefono_contacto'];
                                     break;
                                 }
                         }
