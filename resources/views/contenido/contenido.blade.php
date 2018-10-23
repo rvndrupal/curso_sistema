@@ -11,16 +11,16 @@
 <articulo></articulo>
 </template>
 <template v-if="menu==3">
-<h1>ESTO ES EL CONTENIDO NUMERO tres</h1>
+<h1>ESto es el tres</h1>
 </template>
 <template v-if="menu==4">
-<h1>ESTO ES EL CONTENIDO NUMERO cuatro</h1>
+<proveedor></proveedor>
 </template>
 <template v-if="menu==5">
 <h1>ESTO ES EL CONTENIDO NUMERO cinco</h1>
 </template>
 <template v-if="menu==6">
-<h1>ESTO ES EL CONTENIDO NUMERO SEIS</h1>
+<cliente></cliente>
 </template>
 <template v-if="menu==7">
 <h1>ESTO ES EL CONTENIDO NUMERO SIETE</h1>

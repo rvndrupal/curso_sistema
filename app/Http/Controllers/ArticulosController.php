@@ -20,14 +20,6 @@ class ArticulosController extends Controller
         $criterio = $request->criterio;
 
 
-
-       /* $articulos = Articulos::paginate(3);
-
-            $articulos->each(function($articulos){
-                $articulos->category;
-            });
-           // dd($articulos);*/
-
         if ($buscar==''){
             $articulos = Articulos::orderBy('id', 'desc')->paginate(3);
             $articulos->each(function($articulos){

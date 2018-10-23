@@ -30,6 +30,11 @@ Route::put('/articulo/desactivar', 'ArticulosController@desactivar');
 Route::put('/articulo/activar', 'ArticulosController@activar');
 
 Route::get('/cliente', 'PersonasController@index');
-        Route::post('/cliente/registrar', 'PersonasController@store');
-        Route::put('/cliente/actualizar', 'PersonasController@update');
-        Route::get('/cliente/selectCliente', 'PersonasController@selectCliente');
+Route::post('/cliente/registrar', 'PersonasController@store');
+Route::put('/cliente/actualizar', 'PersonasController@update');
+Route::get('/cliente/selectCliente', 'PersonasController@selectCliente');
+
+Route::get('/proveedor', 'ProveedoresController@index');
+Route::post('/proveedor/registrar', 'ProveedoresController@store');
+Route::put('/proveedor/actualizar', 'ProveedoresController@update');
+Route::get('/proveedor/selectProveedor', 'ProveedoresController@selectProveedor');

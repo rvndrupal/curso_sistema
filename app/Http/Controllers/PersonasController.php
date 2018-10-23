@@ -12,7 +12,7 @@ class PersonasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
         $buscar = $request->buscar;
@@ -76,7 +76,7 @@ class PersonasController extends Controller
     public function update(Request $request, Personas $personas)
     {
         if (!$request->ajax()) return redirect('/');
-        $persona = Persona::findOrFail($request->id);
+        $persona = Personas::findOrFail($request->id);
         $persona->nombre = $request->nombre;
         $persona->tipo_documento = $request->tipo_documento;
         $persona->num_documento = $request->num_documento;
